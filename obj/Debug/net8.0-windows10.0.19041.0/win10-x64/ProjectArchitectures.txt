@@ -1,0 +1,1 @@
+C:\Users\Mahi\source\repos\WidgetDemoApp\WidgetDemoApp\WidgetDemoApp.csproj;x64

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WidgetDemoApp.MainPage"
+             Title="Widget Demo App"
+             BackgroundColor="#F4F6F8">
+
+    <!-- ScrollView lets the page scroll on small screens -->
+    <ScrollView>
+        <!-- Outer StackLayout: stacks all sections vertically -->
+        <StackLayout Padding="20" Spacing="16">
+
+            <!-- Circular profile picture: a Frame clips the Image into a circle -->
+            <Frame CornerRadius="60"
+                   HeightRequest="120"
+                   WidthRequest="120"
+                   Padding="0"
+                   IsClippedToBounds="True"
+                   HasShadow="True"
+                   HorizontalOptions="Center">
+                <Image Source="https://avatars.githubusercontent.com/u/9919"
+                       Aspect="AspectFill" />
+            </Frame>
+
+            <!-- Profile summary card -->
+            <Frame CornerRadius="12"
+                   HasShadow="True"
+                   BackgroundColor="White"
+                   Padding="16">
+                <StackLayout Spacing="4">
+                    <Label Text="Mahi Palimkar"
+                           FontSize="24"
+                           TextColor="Gray"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="B.Tech Computer Engineering"
+                           FontSize="14"
+                           TextColor="Gray"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+            </Frame>
+
+            <!-- Grid: three equal columns showing quick stats -->
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Column="0">
+                    <Label Text="12" FontSize="20" FontAttributes="Bold" TextColor="Black"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Projects" FontSize="12" TextColor="Gray"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <StackLayout Grid.Column="1">
+                    <Label Text="8" FontSize="20" FontAttributes="Bold" TextColor="Black"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Courses" FontSize="12" TextColor="Gray"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <StackLayout Grid.Column="2">
+                    <Label Text="9.4" FontSize="20" FontAttributes="Bold" TextColor="Black"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="CGPA" FontSize="12" TextColor="Gray"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+            </Grid>
+
+            <!-- Switch with a label that reacts to it -->
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="AvailabilityLabel"
+                       Text="Available for projects: No"
+                       TextColor="Black"
+                       VerticalOptions="Center"
+                       HorizontalOptions="StartAndExpand" />
+                <Switch Toggled="OnAvailabilityToggled" />
+            </StackLayout>
+
+            <!-- Horizontal StackLayout holding the two buttons -->
+            <StackLayout Orientation="Horizontal" Spacing="12">
+                <Button x:Name="LikeButton"
+                        Text="Like (0)"
+                        Clicked="OnLikeClicked"
+                        BackgroundColor="#1A237E"
+                        TextColor="Black"
+                        HorizontalOptions="FillAndExpand" />
+                <Button Text="Message"
+                        Clicked="OnMessageClicked"
+                        BackgroundColor="#2E7D32"
+                        TextColor="Black"
+                        HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+            <!-- Single-line text input -->
+            <Entry x:Name="CommentEntry"
+                   Placeholder="Add a comment"
+                   TextColor="Black"/>
+
+            <Label Text="Skills"
+                   FontSize="16"
+                   FontAttributes="Bold" />
+
+            <!-- Horizontally scrolling list bound to the Skills collection -->
+            <CollectionView ItemsSource="{Binding Skills}"
+                            ItemsLayout="HorizontalList"
+                            HeightRequest="60">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="16"
+                               Padding="14,8"
+                               Margin="4"
+                               HasShadow="False"
+                               BackgroundColor="#C5CAE9"
+                               VerticalOptions="Center">
+                            <Label Text="{Binding .}"
+                                   TextColor="#1A237E" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
